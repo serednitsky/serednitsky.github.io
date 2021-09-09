@@ -1,4 +1,41 @@
-body {
+body, html {
   font-family: 'Source Sans Pro', arial, helvetica, sans-serif;
   padding-bottom: 50px;
+}
+
+header {
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  width: 25%;
+  height: 100px;
+  flex: 1;
+  font-size: 50px;
+  cursor: pointer;
+}
+
+.tab {
+  border-radius: unset;
+  border: none;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.button-red {
+  background-color: #ff0000;
+}
+
+.button-blue {
+  background-color: #0000ff;
+}
+
+.button-green {
+  background-color: #008000;
+}
+
+.button-pink {
+  background-color: #ff1493;
 }
