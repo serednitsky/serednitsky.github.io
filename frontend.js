@@ -26,7 +26,7 @@ function frontendVisualization() {
         ],
         print_layout: true,
         //ENTRIES
-        entries: [
+        entries: [ /*
             {
                 "quadrant": 3,
                 "ring": 3,
@@ -138,7 +138,7 @@ function frontendVisualization() {
                 "label": "SSR",
                 "active": true,
                 "moved": 1
-            },
+            }, */
         ]
         //ENTRIES
     });

@@ -26,7 +26,7 @@ function mobileVisualization() {
         ],
         print_layout: true,
         //ENTRIES
-        entries: [
+        entries: [ /*
             {
                 "quadrant": 3,
                 "ring": 0,
@@ -166,8 +166,7 @@ function mobileVisualization() {
                 "label": "Android",
                 "active": true,
                 "moved": 0
-            },
-
+            }, */
         ]
         //ENTRIES
     });

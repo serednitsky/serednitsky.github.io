@@ -27,7 +27,7 @@ function backendVisualization() {
         ],
         print_layout: true,
         //ENTRIES
-        entries: [
+        entries: [ /*
             {
                 "quadrant": 3,
                 "ring": 0,
@@ -272,7 +272,7 @@ function backendVisualization() {
                 "label": "Windows Server 2016",
                 "active": true,
                 "moved": 0
-            },
+            },*/
         ]
         //ENTRIES
     });

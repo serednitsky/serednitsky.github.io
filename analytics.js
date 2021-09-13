@@ -26,7 +26,7 @@ function analyticsVisualization() {
         ],
         print_layout: true,
         //ENTRIES
-        entries: [
+        entries: [ /*
             {
                 "quadrant": 3,
                 "ring": 0,
@@ -82,7 +82,7 @@ function analyticsVisualization() {
                 "label": "greenplum",
                 "active": true,
                 "moved": 1
-            },
+            }, */
         ]
         //ENTRIES
     });
