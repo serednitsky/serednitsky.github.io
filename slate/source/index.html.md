@@ -13,6 +13,7 @@ toc_footers:
 
 includes:
   - errors
+  - API
 
 search: true
 
