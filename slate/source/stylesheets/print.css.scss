@@ -134,20 +134,18 @@ body {
   }
 
   aside.notice:before {
-    @extend %icon-info-sign;
+    font-size: 22px;
+    content: url("../images/notice-icon.svg");
   }
 
   aside.warning:before {
-    @extend %icon-exclamation-sign;
+    font-size: 22px;
+    content: url("../images/warning-icon.svg");
+
+    //@extend %icon-exclamation-sign;
   }
 
   aside.success:before {
     @extend %icon-ok-sign;
-  }
-}
-
-.copy-clipboard {
-  @media print {
-    display: none
   }
 }

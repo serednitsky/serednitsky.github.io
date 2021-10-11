@@ -1,6 +1,11 @@
 //= require ../lib/_lunr
 //= require ../lib/_jquery
 //= require ../lib/_jquery.highlight
+//= require ../lib/_lunr.stemmer.support
+//= require ../lib/_lunr.multi
+//= require ../lib/_lunr.ru
+
+
 ;(function () {
   'use strict';
 
@@ -8,36 +13,33 @@
   var highlightOpts = { element: 'span', className: 'search-highlight' };
   var searchDelay = 0;
   var timeoutHandle = 0;
-  var index;
 
-  function populate() {
-    index = lunr(function(){
+  var index = new lunr.Index();
 
-      this.ref('id');
-      this.field('title', { boost: 10 });
-      this.field('body');
-      this.pipeline.add(lunr.trimmer, lunr.stopWordFilter);
-      var lunrConfig = this;
-
-      $('h1, h2').each(function() {
-        var title = $(this);
-        var body = title.nextUntil('h1, h2');
-        lunrConfig.add({
-          id: title.prop('id'),
-          title: title.text(),
-          body: body.text()
-        });
-      });
-
-    });
-    determineSearchDelay();
-  }
+  index.ref('id');
+  index.field('title', { boost: 10 });
+  index.field('body');
+  index.pipeline.add(lunr.trimmer, lunr.stopWordFilter);
 
   $(populate);
   $(bind);
 
+  function populate() {
+    $('h1, h2, h3, h4, h5').each(function() {
+		 index.use(lunr.multiLanguage('ru', 'en'));
+      var title = $(this);
+      var body = title.nextUntil('h1, h2, h3, h4, h5');
+      index.add({
+        id: title.prop('id'),
+        title: title.text(),
+        body: body.text()
+      });
+    });
+
+    determineSearchDelay();
+  }
   function determineSearchDelay() {
-    if (index.tokenSet.toArray().length>5000) {
+    if(index.tokenStore.length>5000) {
       searchDelay = 300;
     }
   }
@@ -55,7 +57,7 @@
       }();
       wait(function(){
         search(e);
-      }, searchDelay);
+      }, searchDelay );
     });
   }
 
@@ -83,7 +85,7 @@
         highlight.call(searchInput);
       } else {
         searchResults.html('<li></li>');
-        $('.search-results li').text('No Results Found for "' + searchInput.value + '"');
+        $('.search-results li').text('Ничего не найдено по запросу: "' + searchInput.value + '"');
       }
     } else {
       unhighlight();

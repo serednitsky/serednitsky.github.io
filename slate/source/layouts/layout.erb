@@ -22,32 +22,15 @@ under the License.
     end
   end
 %>
-
 <!doctype html>
 <html>
   <head>
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <% if current_page.data.key?('meta') %>
-      <% current_page.data.meta.each do |meta| %>
-        <meta
-          <% meta.each do |key, value| %>
-            <%= "#{key}=\"#{value}\"" %>
-          <% end %>
-        >
-      <% end %>
-    <% end %>
-    <title><%= current_page.data.title || "API Documentation" %></title>
-
-    <style media="screen">
-      <%= Rouge::Themes::MonokaiSublimeSlate.render(:scope => '.highlight') %>
-    </style>
-    <style media="print">
-      * {
-        transition:none!important;
-      }
-      <%= Rouge::Themes::Base16::Solarized.render(:scope => '.highlight') %>
+    <title><%= current_page.data.title || "CloudKassir Developers" %></title>
+    <style>
+      <%= Rouge::Themes::MonokaiSublime.render(:scope => '.highlight') %>
     </style>
     <%= stylesheet_link_tag :screen, media: :screen %>
     <%= stylesheet_link_tag :print, media: :print %>
@@ -56,12 +39,31 @@ under the License.
     <% else %>
       <%= javascript_include_tag  "all_nosearch" %>
     <% end %>
+	<%= favicon_tag 'favicon.ico' %>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-156102750-4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-    <% if current_page.data.code_clipboard %>
-    <script>
-      $(function() { setupCodeCopy(); });
-    </script>
-    <% end %>
+  gtag('config', 'UA-156102750-4');
+</script>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript" >
+   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+   m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+   ym(66938200, "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true
+   });
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/66938200" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
   </head>
 
   <body class="<%= page_classes %>" data-languages="<%=h language_tabs.map{ |lang| lang.is_a?(Hash) ? lang.keys.first : lang }.to_json %>">
@@ -72,8 +74,8 @@ under the License.
       </span>
     </a>
     <div class="toc-wrapper">
-      <%= image_tag "logo.png", class: 'logo' %>
-      <% if language_tabs.any? %>
+      <%= link_to "#{image_tag("logo1.png", class: 'logo')}", "https://cloudkassir.ru" %>
+		    <% if language_tabs.any? %>
         <div class="lang-selector">
           <% language_tabs.each do |lang| %>
             <% if lang.is_a? Hash %>
@@ -86,7 +88,7 @@ under the License.
       <% end %>
       <% if current_page.data.search %>
         <div class="search">
-          <input type="text" class="search" id="input-search" placeholder="Search">
+          <input type="text" class="search" id="input-search" placeholder="Поиск">
         </div>
         <ul class="search-results"></ul>
       <% end %>
@@ -99,6 +101,33 @@ under the License.
                 <% h1[:children].each do |h2| %>
                   <li>
                     <a href="#<%= h2[:id] %>" class="toc-h2 toc-link" data-title="<%= h2[:title] %>"><%= h2[:content] %></a>
+					<% if h2[:children].length > 0 %>
+           <ul class="toc-list-h3">
+             <% h2[:children].each do |h3| %>
+               <li>
+               <a href="#<%= h3[:id] %>" class="toc-h3 toc-link" data-title="<%= h3[:content] %>"><%= h3[:content] %></a>
+         <% if h3[:children].length > 0 %>
+            <ul class="toc-list-h4">
+              <% h3[:children].each do |h4| %>
+                <li>
+                 <a href="#<%= h4[:id] %>" class="toc-h4 toc-link" data-title="<%= h4[:content] %>"><%= h4[:content] %></a>
+                 <% if h4[:children].length > 0 %>
+            <ul class="toc-list-h5">
+              <% h4[:children].each do |h5| %>
+                <li>
+                 <a href="#<%= h5[:id] %>" class="toc-h5 toc-link" data-title="<%= h5[:content] %>"><%= h5[:content] %></a>
+              </li>
+            <% end %>
+          </ul>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+</li>
+<% end %>
+</ul>
+<% end %>
                   </li>
                 <% end %>
               </ul>

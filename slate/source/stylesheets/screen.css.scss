@@ -30,10 +30,14 @@ html, body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  font-size: 14px;
   @extend %default-font;
   background-color: $main-bg;
   height: 100%;
   -webkit-text-size-adjust: none; /* Never autoresize text */
+
+  font-size: 16px;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -42,17 +46,17 @@ html, body {
 
 #toc > ul > li > a > span {
   float: right;
-  background-color: #2484FF;
+  background-color: #fFF;
   border-radius: 40px;
   width: 20px;
 }
 
+
 .toc-wrapper {
   transition: left 0.3s ease-in-out;
-
+  position: fixed;
   overflow-y: auto;
   overflow-x: hidden;
-  position: fixed;
   z-index: 30;
   top: 0;
   left: 0;
@@ -60,7 +64,9 @@ html, body {
   width: $nav-width;
   background-color: $nav-bg;
   font-size: 13px;
-  font-weight: bold;
+  font-weight: bolder;
+
+
 
   // language selector for mobile devices
   .lang-selector {
@@ -71,17 +77,24 @@ html, body {
     }
   }
 
+
   // This is the logo at the top of the ToC
   .logo {
     display: block;
     max-width: 100%;
-    margin-bottom: $logo-margin;
+    margin: auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    //padding: 30px 0px 30px 1px;
+    //margin-bottom: $logo-margin;
+    border-bottom: 3px;
   }
 
   &>.search {
     position: relative;
-
+    border-top: 1px solid #f2f2f2;
     input {
+      font-weight: normal;
       background: $nav-bg;
       border-width: 0 0 1px 0;
       border-color: $search-box-border-color;
@@ -90,15 +103,18 @@ html, body {
       margin: $nav-v-padding $nav-padding;
       width: $nav-width - ($nav-padding*2);
       outline: none;
-      color: $nav-text;
+      color: #666;
       border-radius: 0; /* ios has a default border radius */
+      &::placeholder {
+        color: #e7e7e7;
+      }
     }
 
     &:before {
       position: absolute;
       top: 17px;
       left: $nav-padding;
-      color: $nav-text;
+      color: $nav-text-search;
       @extend %icon-search;
     }
   }
@@ -107,7 +123,7 @@ html, body {
     margin-top: 0;
     box-sizing: border-box;
     height: 0;
-    overflow-y: auto;
+    overflow-y: scroll;
     overflow-x: hidden;
     transition-property: height, margin;
     transition-duration: 180ms;
@@ -155,12 +171,14 @@ html, body {
   .toc-link.active {
     background-color: $nav-active-bg;
     color: $nav-active-text;
+    font-weight: bold;
   }
 
   // this is parent links of the currently selected ToC entry
   .toc-link.active-parent {
     background-color: $nav-active-parent-bg;
     color: $nav-active-parent-text;
+    font-weight: bold;
   }
 
   .toc-list-h2 {
@@ -177,11 +195,12 @@ html, body {
   .toc-footer {
     padding: 1em 0;
     margin-top: 1em;
-    border-top: 1px dashed $nav-footer-border-color;
+    border-top: 1px solid #f2f2f2;// $nav-footer-border-color;
 
     li,a {
-      color: $nav-text;
+      color: #6496DC;
       text-decoration: none;
+      font-weight: normal;
     }
 
     a:hover {
@@ -189,8 +208,8 @@ html, body {
     }
 
     li {
-      font-size: 0.8em;
-      line-height: 1.7;
+      font-size: 12px;
+      line-height: 2;
       text-decoration: none;
     }
   }
@@ -207,8 +226,17 @@ html, body {
   transition-property: background;
   transition-timing-function: linear;
   transition-duration: 130ms;
+  font-size: 14px;
+
 }
 
+.toc-footer>li:nth-child(4), .toc-footer>li:last-child{
+  display: inline-block;
+}
+
+.toc-footer>li:last-child{
+  padding:0;
+}
 // button to show navigation on mobile devices
 #nav-button {
   span {
@@ -262,13 +290,15 @@ html, body {
   // I know, it's hackish, but it's the simplist way to make the left
   // half of the content always this background color.
   .dark-box {
-    width: $examples-width;
+
+    width: 0%;
     background-color: $examples-bg;
     position: absolute;
     right: 0;
     top: 0;
     bottom: 0;
   }
+
 
   .lang-selector {
     position: fixed;
@@ -278,13 +308,12 @@ html, body {
 }
 
 .lang-selector {
-  display: flex;
   background-color: $lang-select-bg;
   width: 100%;
   font-weight: bold;
-  overflow-x: auto;
   a {
-    display: inline;
+    display: none;
+    float:left;
     color: $lang-select-text;
     text-decoration: none;
     padding: 0 10px;
@@ -328,13 +357,15 @@ html, body {
   }
 
   &>h1, &>h2, &>h3, &>h4, &>h5, &>h6, &>p, &>table, &>ul, &>ol, &>aside, &>dl {
-    margin-right: $examples-width;
+    margin-right: 0%;
     padding: 0 $main-padding;
     box-sizing: border-box;
     display: block;
 
     @extend %left-col;
   }
+
+
 
   &>ul, &>ol {
     padding-left: $main-padding + 15px;
@@ -347,14 +378,17 @@ html, body {
 
   h1 {
     @extend %header-font;
-    font-size: 25px;
-    padding-top: 0.5em;
-    padding-bottom: 0.5em;
-    margin-bottom: $h1-margin-bottom;
-    margin-top: 2em;
-    border-top: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
-    background-color: #fdfdfd;
+    font-size: 44px;
+    font-weight: bold;
+    padding-top: 60px;
+    padding-bottom: 60px;
+    //margin-bottom: $h1-margin-bottom;
+    //margin-top: 60px;
+    //margin-bottom: 60px;
+    margin: 0;
+    border-top: 1px solid rgba(51, 51, 51, 0.05);
+    border-bottom: 1px solid #f9f9f9;
+    background-color: #f9f9f9;
   }
 
   h1:first-child, div:first-child + h1 {
@@ -365,9 +399,9 @@ html, body {
   h2 {
     @extend %header-font;
     font-size: 19px;
-    margin-top: 4em;
+    //margin-top: 4em;
     margin-bottom: 0;
-    border-top: 1px solid #ccc;
+    //  border-top: 1px solid #ccc;
     padding-top: 1.2em;
     padding-bottom: 1.2em;
     background-image: linear-gradient(to bottom, rgba(#fff, 0.2), rgba(#fff, 0));
@@ -388,7 +422,7 @@ html, body {
   }
 
   h4, h5, h6 {
-    font-size: 10px;
+    font-size: 16px;
   }
 
   hr {
@@ -398,29 +432,42 @@ html, body {
   }
 
   table {
-    margin-bottom: 1em;
+    width: 95%;
+    margin: auto;
+    margin-bottom: 40px;
+    margin-left: 28px;
+    //margin: 0px 0px 40px 0px;
+    padding: auto;
+
+    background: #fff;
+
     overflow: auto;
+    border-radius: 5px;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+
     th,td {
       text-align: left;
       vertical-align: top;
       line-height: 1.6;
+
       code {
         white-space: nowrap;
       }
     }
 
     th {
-      padding: 5px 10px;
-      border-bottom: 1px solid #ccc;
+      padding: 30px 10px;
+      border-bottom: 1px solid #f2f2f2;
       vertical-align: bottom;
+      background: #fff;
     }
 
     td {
-      padding: 10px;
+      padding: 30px 10px;
     }
 
-    tr:last-child {
-      border-bottom: 1px solid #ccc;
+    tr{
+      border-bottom: 1px solid #f2f2f2;
     }
 
     tr:nth-child(odd)>td {
@@ -440,9 +487,12 @@ html, body {
     margin-left: 15px;
   }
 
+
+
   p, li, dt, dd {
-    line-height: 1.6;
-    margin-top: 0;
+    line-height: 31px;
+    margin:0;
+    //margin-top: 10px;
   }
 
   img {
@@ -453,6 +503,10 @@ html, body {
     background-color: rgba(0,0,0,0.05);
     padding: 3px;
     border-radius: 3px;
+    //color: #a6e22e;
+    &>.span {
+      color: #7fff00;
+    }
     @extend %break-words;
     @extend %code-font;
   }
@@ -463,13 +517,16 @@ html, body {
   }
 
   aside {
-    padding-top: 1em;
-    padding-bottom: 1em;
+    width: 95%;
+    padding-top: 28px;
+    padding-bottom: 28px;
     margin-top: 1.5em;
     margin-bottom: 1.5em;
+    margin-right: auto;
+    margin-left: 28px;
     background: $aside-notice-bg;
     line-height: 1.6;
-
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
     &.warning {
       background-color: $aside-warning-bg;
     }
@@ -481,16 +538,20 @@ html, body {
 
   aside:before {
     vertical-align: middle;
-    padding-right: 0.5em;
-    font-size: 14px;
-  }
+    padding-right: 30px;
+    padding-left: 2px;
 
+    font-size: 16px;
+  }
+  //
   aside.notice:before {
-    @extend %icon-info-sign;
+    //@extend %icon-info-sign;
+    font-size: 22px;
+    content: url("../images/notice-icon.svg");
   }
 
   aside.warning:before {
-    @extend %icon-exclamation-sign;
+    content: url("../images/warning-icon.svg");
   }
 
   aside.success:before {
@@ -505,32 +566,60 @@ html, body {
     background: linear-gradient(to top left, #F7E633 0%, #F1D32F 100%);
   }
 }
+.page-wrapper > .content > p:nth-child(2){
+  margin-top: 70px;
+  //padding-right: 0px;
+  float: right;
+  color: #999;
+  width: 300px;
+}
+.page-wrapper > .content > h1:first-child{
+  padding-bottom: 0px;
+}
+.page-wrapper > .content > h1:first-child,  .page-wrapper > .content > p:nth-child(2){
+  display: inline-block;
 
-////////////////////////////////////////////////////////////////////////////////
+  // padding-top: 60px;
+  // padding-top: 60px;
+  //margin-top:60px;
+  //margin: auto;
+}
+  ////////////////////////////////////////////////////////////////////////////////
 // CODE SAMPLE STYLES
 ////////////////////////////////////////////////////////////////////////////////
 // This is all the stuff that appears in the right half of the page
 
 .content {
-  &>div.highlight {
-    clear:none;
+  p, li {
+    font-size: 16px;
+  }
+
+  h2 {
+    font-size: 24px;
+    margin: 0;
+    margin-top: 60px;
+    margin-bottom: 30px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+
+  p {
+    padding-bottom: 12px;
   }
 
   pre, blockquote {
     background-color: $code-bg;
     color: #fff;
-
-    margin: 0;
-    width: $examples-width;
-
-    float:right;
-    clear:right;
+	margin: auto;
+    width: 95%;
+    float: none;
+    clear: right;
 
     box-sizing: border-box;
 
     @extend %right-col;
 
-    &>p { margin: 0; }
+   // &>p { margin: 0;}
 
     a {
       color: #fff;
@@ -541,9 +630,14 @@ html, body {
 
   pre {
     @extend %code-font;
-    padding-top: 2em;
-    padding-bottom: 2em;
+    //color: #11b0f6 ;
+    //padding-top: 2em;
+    border-radius: 4px;
+    //padding-bottom: 20px;
     padding: 2em $main-padding;
+    margin-bottom: 30px;
+    margin-left: 28px;
+
   }
 
   blockquote {
@@ -568,6 +662,7 @@ html, body {
     &.open {
       left: 0;
     }
+
   }
 
   .page-wrapper {
@@ -581,18 +676,61 @@ html, body {
   .toc-link {
     padding-top: 0.3em;
     padding-bottom: 0.3em;
+    border-bottom: 3px #f2f2f2;
   }
 }
+
 
 @media (max-width: $phone-width) {
   .dark-box {
     display: none;
   }
+	
+	.ck-demo {
+	display:none;
+   }
 
+
+  
   %left-col {
     margin-right: 0;
   }
+  
+//custom below
 
+ // iframe {
+ //     width: 260px;
+ //  }
+	.content table {
+    width: auto;
+}
+.content aside {
+    width: 90%;
+}
+  .content h1 {
+  font-size:22px;
+  }
+    .content h2 {
+  font-size:20px;
+  }
+      .content h3 {
+  font-size:16px;
+  }
+  .content h4 {
+    font-size:16px;
+    }
+    .content h5 {
+      font-size:16px;
+      }
+      .content h6 {
+        font-size:16px;
+        }
+  .content p, .content li {
+    word-wrap: break-word;
+}
+
+//till this
+  
   .toc-wrapper .lang-selector {
     display: block;
   }
@@ -611,23 +749,178 @@ html, body {
   }
 }
 
-.highlight .c, .highlight .cm, .highlight .c1, .highlight .cs {
-  color: #909090;
+
+//Custom Below
+
+//.highlight .c, .highlight .cm, .highlight .c1, .highlight .cs {
+//  color: #909090;
+//}
+
+//.highlight, .highlight .w {
+//  background-color: $code-bg;
+//}
+
+//.highlight .s2 {
+//  color: #4FBB54;
+//}
+
+
+
+
+//.content pre.shell {
+//    margin-bottom: 20px;
+//	}
+//класс .o  отвечает за изменения цвета символов "=", "{", "(", ")", "}", и т.д.
+.highlight .s2 {
+ color: #a6e22e;
+}
+//за текст прописанный внутри тега
+//.content pre > code {
+//   color: orange;
+//}
+// за смену свойств объекта, следуют после ":" и обособлены одинарными кавычакми
+
+
+
+//.highlight .s1 {
+//    color: #11b0f6;
+//}
+//за смену цвета у значений true/false, type  и др
+.highlight .nb {
+    color: #fd933d;
+}
+//за смену текста, отвечающие за атрибуты внутри тегов(например, "id", "autocomplete", " name")
+.highlight .nv {
+    color: #66d9ef;
+}
+.highlight .o {
+   color: #fff;
+}
+//  class .k за смену цвета слова "function", "$", "if/else/elseif/for"
+.highlight .k, .highlight .kv {
+   color: #fd933d;
+}
+//за смену текста, обособленный двойными кавычками
+
+.highlight .mf {
+    color: #fd933d;
+}
+.highlight .mi {
+    color: #fd933d;
+}
+.highlight .err {
+    color: #989898;
 }
 
-.highlight, .highlight .w {
-  background-color: $code-bg;
+.highlight .c1 {
+    color: #989898;
 }
 
-.copy-clipboard {
-  float: right;
-  fill: #9DAAB6;
-  cursor: pointer;
-  opacity: 0.4;
-  height: 18px;
-  width: 18px;
+.highlight .se {
+    color: #e6db74;
+}
+.highlight .nl {
+    color: #a6e22e;
 }
 
-.copy-clipboard:hover {
-  opacity: 0.8;
+.highlight .m, .highlight .mb, .highlight .mx {
+    color: #fd933d;
+}
+
+.flag {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom:0px;
+    margin-left: 0px;
+	padding-top: 0px;
+    padding-right: 100px;
+    padding-bottom: 0px;
+    padding-left: 15px;
+}
+
+.content aside.warning {
+    background-color: #fff;
+}
+
+.body {
+word-wrap: break-word
+}
+
+.content h1 {
+color: #333333
+}
+.content h2 {
+color: #333333
+}
+.content h3 {
+  font-size: 16px;
+color: #333333
+}
+
+.content h4 {
+  color: #333333
+  }
+
+.content h5 {
+    color: #333333
+    }
+
+.content h6 {
+      color: #333333
+      }
+.b, strong {
+color: #333333
+}
+
+//.content {
+//word-wrap: break-word
+// }
+
+.content p{
+    width: 97%;
+}
+
+ .ck-demo-link {
+	display:none;
+	@media (max-width: $phone-width){
+	display:block;
+	}
+	}
+
+//till this
+
+//флаг скроллится
+.toc-footer>li:last-child {
+overflow:hidden;
+}
+
+///////deeper nesting styles////
+.toc-list-h3 {
+  display: none;
+  background-color: $nav-subitem-bg;
+}
+
+.toc-h3 {
+  padding-left: $nav-padding + $nav-padding + $nav-indent;
+  font-size: 12px;
+}
+
+.toc-list-h4 {
+  display: none;
+  background-color: $nav-subitem-bg;
+}
+
+.toc-h4 {
+  padding-left: $nav-padding + $nav-padding + $nav-padding + $nav-indent;
+  font-size: 12px;
+}
+
+.toc-list-h5 {
+  display: none;
+  background-color: $nav-subitem-bg;
+}
+
+.toc-h5 {
+  padding-left: $nav-padding + $nav-padding + $nav-padding + $nav-padding + $nav-indent;
+  font-size: 12px;
 }
