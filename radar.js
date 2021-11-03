@@ -277,12 +277,12 @@ function radar_visualization(config) {
       .style("font-size", "34px");
 
     // footer
-    radar.append("text")
-      .attr("transform", translate(footer_offset.x, footer_offset.y))
-      .text("▲ moved up     ▼ moved down")
-      .attr("xml:space", "preserve")
-      .style("font-family", "Arial, Helvetica")
-      .style("font-size", "10px");
+    // radar.append("text")
+    //   .attr("transform", translate(footer_offset.x, footer_offset.y))
+    //   .text("▲ moved up     ▼ moved down")
+    //   .attr("xml:space", "preserve")
+    //   .style("font-family", "Arial, Helvetica")
+    //   .style("font-size", "10px");
 
     // legend
     var legend = radar.append("g");
