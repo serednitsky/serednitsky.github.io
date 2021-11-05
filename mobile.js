@@ -10,11 +10,9 @@ function mobileVisualization() {
     const requestURL = 'https://script.google.com/macros/s/AKfycbwaMODg9acevseHPsTpVBp1gb6nle43vwm3SP2zoKtQsE63Qgg1CnlcZynkmkjb_6k-/exec'
 
 
-    let radarData
     sendRequest('GET', requestURL)
         .then(data => {
 
-            radarData = data
             radar_visualization({
                 svg_id: "radar",
                 width: 1450,
@@ -26,22 +24,21 @@ function mobileVisualization() {
                 },
                 title: "CP TECH RADAR - MOBILE",
                 quadrants: [
-                    { name: "Data Management" },
-                    { name: "Platform & Infrastructure" },
-                    { name: "Techniques & Tools" },
-                    { name: "Languages & Frameworks" },
+                    {name: "Data Management"},
+                    {name: "Platform & Infrastructure"},
+                    {name: "Techniques & Tools"},
+                    {name: "Languages & Frameworks"},
                 ],
                 rings: [
-                    { name: "ADOPT", color: "#15c400" },
-                    { name: "TRIAL", color: "#3ad2bf" },
-                    { name: "ASSESS", color: "#fbac00" },
-                    { name: "HOLD", color: "#ef4c6b" }
+                    {name: "ADOPT", color: "#15c400"},
+                    {name: "TRIAL", color: "#3ad2bf"},
+                    {name: "ASSESS", color: "#fbac00"},
+                    {name: "HOLD", color: "#ef4c6b"}
                 ],
                 print_layout: true,
-                entries: radarData
+                entries: data
             });
         })
-
 
 
 }
