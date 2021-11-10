@@ -15,14 +15,14 @@ function analyticsVisualization() {
 
             radar_visualization({
                 svg_id: "radar",
-                width: 1450,
-                height: 1000,
+                width: document.querySelector('.container').offsetWidth,
+                height: document.querySelector('.container').offsetHeight,
                 colors: {
-                    background: "#fff",
-                    grid: "#bbb",
+                    background: "transparent",
+                    grid: "#393939",
                     inactive: "#ddd"
                 },
-                title: "CP TECH RADAR - ANALYTICS",
+               /* title: "CP TECH RADAR - ANALYTICS", */
                 quadrants: [
                     {name: "Data Management"},
                     {name: "Platform & Infrastructure"},
@@ -30,15 +30,13 @@ function analyticsVisualization() {
                     {name: "Languages & Frameworks"},
                 ],
                 rings: [
-                    {name: "ADOPT", color: "#15c400"},
-                    {name: "TRIAL", color: "#3ad2bf"},
-                    {name: "ASSESS", color: "#fbac00"},
-                    {name: "HOLD", color: "#ef4c6b"}
+                    {name: "ADOPT", color: "#3853f3"},
+                    {name: "TRIAL", color: "#3853f3"},
+                    {name: "ASSESS", color: "#3853f3"},
+                    {name: "HOLD", color: "#3853f3"}
                 ],
                 print_layout: true,
                 entries: data
             });
         })
-
-
 }
