@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<style>
+    .form-control {
+        border: 1px solid #9E9E9E;
+        border-radius: 5px;
+        color: #000000;
+        padding: 3px;
+        margin-top: 3px;
+        margin-bottom: 5px;
+    }
+
+    .button {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 15px;
+        cursor: pointer;
+        ext-align: center;
+        text-decoration: none;
+        outline: none;
+        color: #fff;
+        background-color: #1B96FE;
+        border: none;
+        border-radius: 50px;
+    }
+
+    .button:hover {
+        background-color: rgb(27, 100, 250)
+    }
+
+    .sample {
+        border-style: 1px;
+        border-radius: 5px;
+        padding: 3px;
+        margin: 15px;
+        margin-top: 2px;
+        margin-bottom: 2px;
+    }
+
+    @font-face {
+        font-family: 'Stolzl';
+        src: url('../fonts/Stolzl-Regular.eot');
+        src: url('../fonts/Stolzl-Regular.eot?#iefix') format('embedded-opentype'),
+            url('../fonts/Stolzl-Regular.woff2') format('woff2'),
+            url('../fonts/Stolzl-Regular.woff') format('woff'),
+            url('../fonts/Stolzl-Regular.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+    }
+
+    body {
+        font-family: Stolzl;
+    }
+
+    .aside {
+        width: 96%;
+        padding-top: 28px;
+        padding-bottom: 28px;
+        margin-top: 1.5em;
+        margin-bottom: 1.5em;
+        padding-left: 1.5em;
+
+        background: #fff;
+        line-height: 1.6;
+        box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .aside:before {
+        font-size: 22px;
+        content: url(../images/notice-icon.svg);
+        vertical-align: middle;
+        padding-right: 30px;
+        padding-left: 2px;
+        font-size: 16px;
+    }
+</style>
+<script src="https://widget.cloudpayments.ru/bundles/cloudpayments.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<head>
+    <title>widget</title>
+    <meta charset="utf-8">
+</head>
+
+<body>
+    <div class="sample">
+        <div class="form-group">
+
+            </br>
+            <p>Стоимость: 12 000 рублей. Пожалуйста, выберите вариант оплаты:</p>
+            </br>
+            <div>
+                <label for="select-sample-5-now">
+                    </br>
+                    <input name="select-sample-5" id="select-sample-5-now" checked="checked" type="radio">
+                    оплатить 12 000 рублей сейчас
+                </label>
+            </div>
+            <div>
+                <label for="select-sample-5-later">
+                    </br>
+                    <input name="select-sample-5" id="select-sample-5-later" type="radio">
+                    оплатить 6 000 рублей сейчас, остальное в рассрочку на 6 месяцев
+                </label>
+            </div>
+        </div>
+        </br>
+        <input id="checkout-sample-5" value="Оплатить" class="button" type="button">
+
+        <script>
+            this.paySample5 = function () {
+                var widget = new cp.CloudPayments();
+
+                var amount = 12000; //по умолчанию 12000 рублей разом
+                var data = {};
+
+                var payLater = $('#select-sample-5-later').is(':checked'); //проверка
+
+                if (payLater) { //включаем подписку
+                    data.CloudPayments = {
+                        recurrent: {
+                            interval: 'Month',
+                            period: 1,
+                            amount: 1000,
+                            maxPeriods: 6
+                        } //6 месяцев по 1000 рублей начиная со следующего месяца
+                    };
+                    amount = 6000; //сумма первого платежа - 6000 рублей.
+                }
+
+                widget.charge({ // options
+                        publicId: 'test_api_00000000000000000000001', //id из личного кабинета
+                        description: 'Оплата ...', //назначение
+                        amount: amount, //сумма
+                        currency: 'RUB', //валюта
+                        accountId: 'user@example.com', //идентификатор плательщика (обязательно для создания подписки)
+                        data: data
+                    },
+                    function (options) { // success
+                        //действие при успешной оплате
+                    },
+                    function (reason, options) { // fail
+                        //действие при неуспешной оплате
+                    });
+            };
+
+            $('#checkout-sample-5').click(paySample5);
+        </script>
+        </br>
+        </br>
+        </br>
+        </br>
+        <div class="aside">Для тестирования можно использовать как <a
+                href="https://developers.cloudpayments.ru/#testirovanie" target="_blank">тестовые карточные данные</a>,
+            так и реальные. Списания денежных средств не произойдет.</div>
+    </div>
+</body>
+
+</html>
