@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<style>
+    .form-control {
+        border: 1px solid #9E9E9E;
+        border-radius: 5px;
+        color: #000000;
+        padding: 3px;
+        margin-top: 3px;
+        margin-bottom: 5px;
+    }
+
+    .button {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 15px;
+        cursor: pointer;
+        ext-align: center;
+        text-decoration: none;
+        outline: none;
+        color: #fff;
+        background-color: #1B96FE;
+        border: none;
+        border-radius: 50px;
+    }
+
+    .button:hover {
+        background-color: rgb(27, 100, 250)
+    }
+
+    .sample {
+        vertical-align: inherit;
+        border-style: 1px;
+        border-radius: 5px;
+        padding: 3px;
+        margin: 15px;
+        margin-top: 2px;
+        margin-bottom: 2px;
+    }
+
+    @font-face {
+        font-family: 'Stolzl';
+        src: url('../fonts/Stolzl-Regular.eot');
+        src: url('../fonts/Stolzl-Regular.eot?#iefix') format('embedded-opentype'),
+            url('../fonts/Stolzl-Regular.woff2') format('woff2'),
+            url('../fonts/Stolzl-Regular.woff') format('woff'),
+            url('../fonts/Stolzl-Regular.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+    }
+
+    body {
+        font-family: Stolzl;
+    }
+
+    .aside {
+        width: 96%;
+        padding-top: 28px;
+        padding-bottom: 28px;
+        margin-top: 1.5em;
+        margin-bottom: 1.5em;
+        padding-left: 1.5em;
+
+        background: #fff;
+        line-height: 1.6;
+        box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .aside:before {
+        font-size: 22px;
+        content: url(../images/notice-icon.svg);
+        vertical-align: middle;
+        padding-right: 30px;
+        padding-left: 2px;
+        font-size: 16px;
+    }
+</style>
+
+<head>
+    <script src="https://widget.cloudpayments.ru/bundles/cloudpayments.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <title>widget</title>
+    <meta charset="utf-8">
+</head>
+
+<body>
+    </br>
+    </br>
+
+    <div class="sample">
+        <div class="form-group">
+
+            <label class="label" for="account-sample-3">Номер абонента:</label>
+            <div>
+                <input id="account-sample-3" required="" placeholder="" class="form-control" type="text" value="#777"
+                    size="30">
+            </div>
+        </div>
+        <br>
+        <div class="form-group">
+            <label class="label" for="amount-sample-3">Сумма:</label>
+            <div>
+                <input id="amount-sample-3" required="" placeholder="" class="form-control" type="text" value="5"
+                    size="30">
+            </div>
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="recurrent-sample-3">
+                <input id="recurrent-sample-3" type="checkbox">
+                Включить ежемесячные платежи
+            </label>
+            <p class="help-block">При включении ваш счет будет пополняться с карты автоматически раз в месяц.</p>
+        </div>
+        <br>
+        <input id="checkout-sample-3" value="Перейти к оплате" class="button" type="button">
+
+        <br>
+        <br>
+        <div class="form-group">
+            Вы можете остановить регулярные платежи в любой момент на <a href="https://my.cloudpayments.ru/"
+                target="_blank">сайте системы CloudPayments</a>.
+            </br>
+            </br>
+            </br>
+            </br>
+            <div class="aside">Для тестирования можно использовать как <a
+                    href="https://developers.cloudpayments.ru/#testirovanie" target="_blank">тестовые карточные
+                    данные</a>, так и реальные. Списания денежных средств не произойдет.</div>
+            </br>
+            </br>
+        </div>
+    </div>
+
+    <script>
+        this.paySample3 = function () {
+            var widget = new cp.CloudPayments();
+
+            var data = {};
+            var auto = $('#recurrent-sample-3').is(':checked'); //проверка
+
+            if (auto) { //включаем подписку
+
+                var date = new Date(); //текущая дата
+                date.setMonth(date.getMonth() + 1); //следующий месяц
+                date.setDate(date.getDate() - 1); //минус один день
+
+                var recurrent = {
+                    interval: 'Month',
+                    period: 1,
+                    startDate: date
+                }; //один раз в месяц начиная со следующего месяца за минусом одного дня
+                data.CloudPayments = {
+                    recurrent: recurrent
+                }
+            }
+
+            var amount = parseFloat($('#amount-sample-3').val());
+            var accountId = $('#account-sample-3').val();
+
+            widget.charge({ // options
+                    publicId: 'test_api_00000000000000000000001', //id из личного кабинета
+                    description: 'Пополнение счета абонента ' + accountId, //назначение
+                    amount: amount, //сумма
+                    currency: 'RUB', //валюта
+                    accountId: accountId, //идентификатор плательщика (обязательно для создания подписки)
+                    data: data
+                },
+                function (options) { // success
+                    //действие при успешной оплате
+                },
+                function (reason, options) { // fail
+                    //действие при неуспешной оплате
+                });
+        };
+
+        $('#checkout-sample-3').click(paySample3)
+    </script>
+</body>
+
+</html>

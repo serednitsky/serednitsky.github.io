@@ -1,0 +1,541 @@
+[
+  {
+    "title": "CloudKassir for developers",
+    "url": "/docs/developers/cloudkassir/",
+    "keywords": [
+      "CloudKassir for developers"
+    ]
+  },
+  {
+    "title": "Test method",
+    "url": "/docs/developers/cloudpayments/api/testovyj-metod",
+    "keywords": [
+      "Test method"
+    ]
+  },
+  {
+    "title": "Cryptogram payment",
+    "url": "/docs/developers/cloudpayments/api/oplata-po-kriptogramme",
+    "keywords": [
+      "Cryptogram payment"
+    ]
+  },
+  {
+    "title": "Processing 3D Secure",
+    "url": "/docs/developers/cloudpayments/api/obrabotka-3-d-secure",
+    "keywords": [
+      "Processing 3D Secure",
+      "Example of the form:"
+    ]
+  },
+  {
+    "title": "Token payment (recurring)",
+    "url": "/docs/developers/cloudpayments/api/oplata-po-tokenu-rekarring",
+    "keywords": [
+      "Token payment (recurring)",
+      "Possible options"
+    ]
+  },
+  {
+    "title": "Payment confirmation",
+    "url": "/docs/developers/cloudpayments/api/podtverzhdenie-oplaty",
+    "keywords": [
+      "Payment confirmation"
+    ]
+  },
+  {
+    "title": "Payment cancellation",
+    "url": "/docs/developers/cloudpayments/api/otmena-oplaty",
+    "keywords": [
+      "Payment cancellation"
+    ]
+  },
+  {
+    "title": "Refund",
+    "url": "/docs/developers/cloudpayments/api/vozvrat-deneg",
+    "keywords": [
+      "Refund"
+    ]
+  },
+  {
+    "title": "Cryptogram payouts",
+    "url": "/docs/developers/cloudpayments/api/vyplata-po-kriptogramme",
+    "keywords": [
+      "Cryptogram payouts"
+    ]
+  },
+  {
+    "title": "Token payout",
+    "url": "/docs/developers/cloudpayments/api/vyplata-po-tokenu",
+    "keywords": [
+      "Token payout"
+    ]
+  },
+  {
+    "title": "SBP payout",
+    "url": "/docs/developers/cloudpayments/api/vyplata-po-sbp",
+    "keywords": [
+      "SBP payout"
+    ]
+  },
+  {
+    "title": "View transaction details",
+    "url": "/docs/developers/cloudpayments/api/prosmotr-tranzaktsii",
+    "keywords": [
+      "View transaction details"
+    ]
+  },
+  {
+    "title": "Check payment status",
+    "url": "/docs/developers/cloudpayments/api/proverka-statusa-platezha",
+    "keywords": [
+      "Check payment status"
+    ]
+  },
+  {
+    "title": "Export transaction list",
+    "url": "/docs/developers/cloudpayments/api/vygruzka-spiska-tranzaktsij",
+    "keywords": [
+      "Export transaction list"
+    ]
+  },
+  {
+    "title": "Export transaction list for an arbitrary period",
+    "url": "/docs/developers/cloudpayments/api/vygruzka-spiska-tranzaktsij-za-proizvolnyj-period",
+    "keywords": [
+      "Export transaction list for an arbitrary period"
+    ]
+  },
+  {
+    "title": "Export chargeback list for a custom period",
+    "url": "/docs/developers/cloudpayments/api/vygruzka-spiska-pretenzij-za-proizvolnyj-period",
+    "keywords": [
+      "Export chargeback list for a custom period"
+    ]
+  },
+  {
+    "title": "Export token list",
+    "url": "/docs/developers/cloudpayments/api/vygruzka-tokenov",
+    "keywords": [
+      "Export token list"
+    ]
+  },
+  {
+    "title": "Create a recurring payment subscription",
+    "url": "/docs/developers/cloudpayments/api/sozdanie-podpiski-na-rekurrentnye-platezhi",
+    "keywords": [
+      "Create a recurring payment subscription"
+    ]
+  },
+  {
+    "title": "Request subscription information",
+    "url": "/docs/developers/cloudpayments/api/zapros-informatsii-o-podpiske",
+    "keywords": [
+      "Request subscription information"
+    ]
+  },
+  {
+    "title": "Subscription filter",
+    "url": "/docs/developers/cloudpayments/api/poisk-podpisok",
+    "keywords": [
+      "Subscription filter"
+    ]
+  },
+  {
+    "title": "Modify a recurring payment subscription",
+    "url": "/docs/developers/cloudpayments/api/izmenenie-podpiski-na-rekurrentnye-platezhi",
+    "keywords": [
+      "Modify a recurring payment subscription"
+    ]
+  },
+  {
+    "title": "Cancel a recurring payment subscription",
+    "url": "/docs/developers/cloudpayments/api/otmena-podpiski-na-rekurrentnye-platezhi",
+    "keywords": [
+      "Cancel a recurring payment subscription"
+    ]
+  },
+  {
+    "title": "Create an invoice for email delivery",
+    "url": "/docs/developers/cloudpayments/api/sozdanie-scheta-dlya-otpravki-po-pochte",
+    "keywords": [
+      "Create an invoice for email delivery"
+    ]
+  },
+  {
+    "title": "Invoice cancellation",
+    "url": "/docs/developers/cloudpayments/api/otmena-sozdannogo-scheta",
+    "keywords": [
+      "Invoice cancellation"
+    ]
+  },
+  {
+    "title": "View notification settings",
+    "url": "/docs/developers/cloudpayments/api/prosmotr-nastroek-uvedomlenij",
+    "keywords": [
+      "View notification settings"
+    ]
+  },
+  {
+    "title": "Change notification settings",
+    "url": "/docs/developers/cloudpayments/api/izmenenie-nastroek-uvedomlenij",
+    "keywords": [
+      "Change notification settings"
+    ]
+  },
+  {
+    "title": "Localization",
+    "url": "/docs/developers/cloudpayments/api/lokalizatsiya",
+    "keywords": [
+      "Localization"
+    ]
+  },
+  {
+    "title": "Airline addendum",
+    "url": "/docs/developers/cloudpayments/api/dlinnaya-zapis",
+    "keywords": [
+      "Airline addendum"
+    ]
+  },
+  {
+    "title": "API",
+    "url": "/docs/developers/cloudpayments/api/",
+    "keywords": [
+      "API",
+      "How it works",
+      "Request authentication",
+      "API idempotency"
+    ]
+  },
+  {
+    "title": "Checkout script",
+    "url": "/docs/developers/cloudpayments/checkout",
+    "keywords": [
+      "Checkout script",
+      "Demo checkout",
+      "Requirements",
+      "Form requirements:",
+      "Cryptogram requirements:",
+      "PCI DSS security requirements:",
+      "Installation",
+      "The option of direct transmission to the script",
+      "The option with the input form:",
+      "When developing your own form or passing data directly to the script, please note the following:",
+      "Methods",
+      "Asynchronous method used to generate a cryptogram"
+    ]
+  },
+  {
+    "title": "Digital ruble",
+    "url": "/docs/developers/cloudpayments/digital-ruble",
+    "keywords": [
+      "Digital ruble",
+      "Accepting digital rubles starting September 1, 2026",
+      "Who the requirements apply to",
+      "How the requirements will be expanded",
+      "Who the requirements do not apply to",
+      "Digital ruble support in CloudPayments",
+      "How to connect"
+    ]
+  },
+  {
+    "title": "Dolyame",
+    "url": "/docs/developers/cloudpayments/dolyame",
+    "keywords": [
+      "Dolyame",
+      "Integration methods",
+      "Connection",
+      "Embedded payment button",
+      "Method POST /payments/altpay/pay"
+    ]
+  },
+  {
+    "title": "Escrow service",
+    "url": "/docs/developers/cloudpayments/escrow",
+    "keywords": [
+      "Escrow service",
+      "Product description",
+      "Definitions and terms",
+      "Connection setup",
+      "Workflows",
+      "Escrow status model",
+      "N:1",
+      "Widget integration diagram",
+      "Checkout API integration workflow",
+      "Restrictions",
+      "1:N"
+    ]
+  },
+  {
+    "title": "General information",
+    "url": "/docs/developers/cloudpayments/general-information",
+    "keywords": [
+      "General information",
+      "Terms and definitions",
+      "Operation types",
+      "Payment processing methods",
+      "Payment methods",
+      "3D Secure"
+    ]
+  },
+  {
+    "title": "Reference data",
+    "url": "/docs/developers/cloudpayments/handbook",
+    "keywords": [
+      "Reference data",
+      "Error codes",
+      "Codes for handling responses to the Check notification",
+      "Operation types",
+      "Transaction statuses",
+      "Subscription statuses (recurring)",
+      "List of currencies",
+      "Fiscal data operators",
+      "Time zone codes",
+      "Notification types"
+    ]
+  },
+  {
+    "title": "CloudPayments for developers",
+    "url": "/docs/developers/cloudpayments/",
+    "keywords": [
+      "CloudPayments for developers"
+    ]
+  },
+  {
+    "title": "Integration scenarios",
+    "url": "/docs/developers/cloudpayments/integration-scenarios",
+    "keywords": [
+      "Integration scenarios",
+      "Payment form",
+      "Payment registration",
+      "Payment verification and registration",
+      "Autopayments for internet providers",
+      "Autopayments for charitable foundations",
+      "Subscription payments",
+      "One-click payments"
+    ]
+  },
+  {
+    "title": "Mir Pay",
+    "url": "/docs/developers/cloudpayments/mir-pay",
+    "keywords": [
+      "Mir Pay",
+      "Integration options",
+      "Enable Mir Pay",
+      "Mir Pay payment process"
+    ]
+  },
+  {
+    "title": "Payment widget",
+    "url": "/docs/developers/cloudpayments/mpf",
+    "keywords": [
+      "Payment widget",
+      "Mobile widget",
+      "Widget installation",
+      "Параметры"
+    ]
+  },
+  {
+    "title": "Notifications",
+    "url": "/docs/developers/cloudpayments/notifications",
+    "keywords": [
+      "Notifications",
+      "Check",
+      "Pay",
+      "Fail",
+      "Confirm",
+      "Refund",
+      "Recurrent",
+      "Cancel",
+      "Verify notifications"
+    ]
+  },
+  {
+    "title": "Online cash register for online payments",
+    "url": "/docs/developers/cloudpayments/online-kassa",
+    "keywords": [
+      "Online cash register for online payments",
+      "54-FZ",
+      "Key provisions of the law",
+      "Online fiscalization",
+      "Online cash register",
+      "Technology demonstration",
+      "Cost",
+      "How to connect",
+      "Conditions for successful receipt creation",
+      "Send an online receipt to the customer",
+      "When the receipt is sent",
+      "Test the online receipt"
+    ]
+  },
+  {
+    "title": "Payment Blocks",
+    "url": "/docs/developers/cloudpayments/payment-blocks",
+    "keywords": [
+      "Payment Blocks",
+      "Constructor demo",
+      "Отличия от виджета",
+      "Установка платежного конструктора",
+      "Unmounting from the DOM",
+      "Events (callbacks)",
+      "Callback types",
+      "Unsubscribe",
+      "Пример вызова PaymentBlocks",
+      "Параметры инициализации",
+      "Обновление платежного конструктора",
+      "Кастомизация платежного конструктора"
+    ]
+  },
+  {
+    "title": "PCI DSS",
+    "url": "/docs/developers/cloudpayments/pcidss",
+    "keywords": [
+      "PCI DSS",
+      "Compliance requirements",
+      "PCI DSS compliance with CloudPayments",
+      "Checkout technology",
+      "ASV scanning"
+    ]
+  },
+  {
+    "title": "Recurring payments",
+    "url": "/docs/developers/cloudpayments/recurrent",
+    "keywords": [
+      "Recurring payments",
+      "Start and stop recurring payments",
+      "Payment schedule customization",
+      "Select the billing period and interval",
+      "Select the billing start date",
+      "Payment limit restrictions",
+      "Plan suspension",
+      "Payment amount customization",
+      "Initial payment amount",
+      "Recurring payment amount",
+      "Automated error resolution",
+      "Interaction with the cardholder"
+    ]
+  },
+  {
+    "title": "SberPay",
+    "url": "/docs/developers/cloudpayments/sber-pay",
+    "keywords": [
+      "SberPay",
+      "Description",
+      "Endpoint",
+      "Example response",
+      "Request parameters",
+      "Example request"
+    ]
+  },
+  {
+    "title": "SBP",
+    "url": "/docs/developers/cloudpayments/sbp",
+    "keywords": [
+      "SBP",
+      "Description",
+      "Endpoint",
+      "Response example",
+      "Request parameters",
+      "Request example"
+    ]
+  },
+  {
+    "title": "Android SDK",
+    "url": "/docs/developers/cloudpayments/sdk-android",
+    "keywords": [
+      "Android SDK"
+    ]
+  },
+  {
+    "title": "iOS SDK",
+    "url": "/docs/developers/cloudpayments/sdk-ios",
+    "keywords": [
+      "iOS SDK"
+    ]
+  },
+  {
+    "title": "Testing",
+    "url": "/docs/developers/cloudpayments/testing",
+    "keywords": [
+      "Testing",
+      "Online cash registers testing"
+    ]
+  },
+  {
+    "title": "T-Pay",
+    "url": "/docs/developers/cloudpayments/tinkoff-pay",
+    "keywords": [
+      "T-Pay",
+      "Get a payment link",
+      "Description",
+      "Endpoint",
+      "Request parameters",
+      "Request example",
+      "Response example",
+      "Get a QR code for payment"
+    ]
+  },
+  {
+    "title": "CloudTips for developers",
+    "url": "/docs/developers/cloudtips/",
+    "keywords": [
+      "CloudTips for developers"
+    ]
+  },
+  {
+    "title": "For developers",
+    "url": "/docs/developers/",
+    "keywords": [
+      "For developers"
+    ]
+  },
+  {
+    "title": "CloudKassir",
+    "url": "/docs/knowledge/cloudkassir/",
+    "keywords": [
+      "CloudKassir"
+    ]
+  },
+  {
+    "title": "CloudKassir: getting started",
+    "url": "/docs/knowledge/cloudkassir/overview",
+    "keywords": [
+      "CloudKassir: getting started"
+    ]
+  },
+  {
+    "title": "CloudPayments",
+    "url": "/docs/knowledge/cloudpayments/",
+    "keywords": [
+      "CloudPayments"
+    ]
+  },
+  {
+    "title": "CloudPayments: getting started",
+    "url": "/docs/knowledge/cloudpayments/overview",
+    "keywords": [
+      "CloudPayments: getting started"
+    ]
+  },
+  {
+    "title": "CloudTips",
+    "url": "/docs/knowledge/cloudtips/",
+    "keywords": [
+      "CloudTips"
+    ]
+  },
+  {
+    "title": "CloudTips: getting started",
+    "url": "/docs/knowledge/cloudtips/overview",
+    "keywords": [
+      "CloudTips: getting started"
+    ]
+  },
+  {
+    "title": "Knowledge base",
+    "url": "/docs/knowledge/",
+    "keywords": [
+      "Knowledge base"
+    ]
+  }
+]

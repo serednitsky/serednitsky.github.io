@@ -1,0 +1,10 @@
+{
+  "sidebar.defaultSidebar.category.База знаний": {
+    "message": "Knowledge base",
+    "description": "The label for category 'База знаний' in sidebar 'defaultSidebar'"
+  },
+  "sidebar.defaultSidebar.category.Разработчикам": {
+    "message": "For developers",
+    "description": "The label for category 'Разработчикам' in sidebar 'defaultSidebar'"
+  }
+}

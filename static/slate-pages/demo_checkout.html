@@ -1,0 +1,167 @@
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <script src="/slate-pages/embedded-theme.js"></script>
+    <!-- <title>Widget demo</title> -->
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="/slate-pages/embedded-theme.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
+    <!-- Favicons -->
+    <meta name="theme-color" content="#7952b3">
+</head>
+
+<body>
+    <div class="container-sm">
+        <main>
+            <div class="row">
+                <div class="col">
+                    <form id="checkoutForm" class="mx-auto">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Card data</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">Past some card data ot use default
+                                </h6>
+
+                                <div class="col-lg-12">
+                                    <label for="c_cardnumber" class="form-label">Card number</label>
+                                    <input type="text" class="form-control" id="c_cardnumber" placeholder=""
+                                        value="4242 4242 4242 4242" required="">
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <label for="c_expire" class="form-label">MM/YY</label>
+                                        <input type="text" class="form-control text-sm-start ps-1" id="c_expire" placeholder=""
+                                            value="01/25" required="">
+                                    </div>
+
+                                    <div class="col-sm-3">
+                                        <label for="c_secret" class="form-label">CVV</label>
+                                        <div class="input-group has-validation">
+                                            <input type="text" class="form-control" id="c_secret" placeholder="777"
+                                                value="777" required="">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <label for="c_name" class="form-label">Name</label>
+                                    <div class="input-group has-validation">
+                                        <input type="text" class="form-control" id="c_name" placeholder="Name"
+                                            required="" value="Chad Virgin">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="w-100 btn btn-primary btn-lg" type="submit" id="c_generate">
+                            Create cryptogram
+                        </button>
+                    </form>
+                </div>
+                <div class="col">
+                    <form class="card p-2">
+                        <div class="input-group">
+                            <textarea class="form-control" placeholder="Cryptogram" id="c_crypto" rows=14></textarea>
+                            <button type="button" class="btn btn-secondary"
+                                onclick="document.getElementById('c_crypto').value = null">Clear
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+    </div>
+    <div class="position-fixed top-0 end-0 p-3" style="z-index: 11">
+        <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <strong class="me-auto name">Bootstrap</strong>
+                <small class="time">Event</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                Stop looking at source code man, that's just a good old fashioned fastcoded bootstrap and native
+                js.
+                Wanna change something? Try <a href="https://hh.ru/employer/1871618" target="_blank">join us</a>.
+            </div>
+        </div>
+    </div>
+    </main>
+
+    </div>
+
+    <script>
+        function initCheckout() {
+
+            document.getElementById('checkoutForm').addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                var checkoutParams = {
+                    cvv: document.getElementById('c_secret').value,
+                    cardNumber: document.getElementById('c_cardnumber').value,
+                    expDateMonthYear: document.getElementById('c_expire').value,
+                };
+
+                loadCheckoutScript(function () {
+                    var checkout = new cp.Checkout({
+                        publicId: "test_api_00000000000000000000002"
+                    });
+
+                    checkout.createPaymentCryptogram(checkoutParams)
+                        .then((cryptogram) => {
+                            document.getElementById('c_crypto').value = cryptogram;
+                        })
+                        .catch((errors) => {
+                            showToast("Checkout error", JSON.stringify(errors));
+                        });
+                })
+
+            })
+        }
+
+        initCheckout();
+
+        function loadCheckoutScript(onload) {
+            if (document.getElementById('checkoutScriptTag')) {
+                if (document.getElementById('checkoutScriptTag').src == getCheckoutUrl()) {
+                    onload();
+                    return;
+                } else {
+                    window.cp.Checkout = undefined;
+                }
+            }
+
+            var script = document.createElement('script');
+            script.id = "checkoutScriptTag";
+            script.src = getCheckoutUrl();
+            script.onload = onload;
+            script.onerror = function () {
+                alert("Load failed");
+                script.remove();
+            };
+
+            document.body.appendChild(script);
+        }
+
+        function getCheckoutUrl() {
+            return "https://checkout.cloudpayments.ru/checkout.js";
+        }
+
+        function showToast(header, msg) {
+            document.querySelector('.toast').querySelector('.name').innerText = header;
+            document.querySelector('.toast').querySelector('.toast-body').innerText = msg;
+            var toastEl = new bootstrap.Toast(document.querySelector('.toast'));
+            toastEl.show({
+                autohide: false
+            }); // This show them
+        }
+    </script>
+
+</body>
+
+</html>

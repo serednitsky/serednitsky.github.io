@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<style>
+    .form-control {
+        border: 1px solid #9E9E9E;
+        border-radius: 5px;
+        color: #000000;
+        padding: 3px;
+        margin-top: 3px;
+        margin-bottom: 5px;
+    }
+
+    .button {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 15px;
+        cursor: pointer;
+        ext-align: center;
+        text-decoration: none;
+        outline: none;
+        color: #fff;
+        background-color: #1B96FE;
+        border: none;
+        border-radius: 50px;
+    }
+
+    .button:hover {
+        background-color: rgb(27, 100, 250)
+    }
+
+    .sample {
+        border-style: 1px;
+        border-radius: 5px;
+        padding: 3px;
+        margin: 15px;
+        margin-top: 2px;
+        margin-bottom: 2px;
+    }
+
+    @font-face {
+        font-family: 'Stolzl';
+        src: url('../fonts/Stolzl-Regular.eot');
+        src: url('../fonts/Stolzl-Regular.eot?#iefix') format('embedded-opentype'),
+            url('../fonts/Stolzl-Regular.woff2') format('woff2'),
+            url('../fonts/Stolzl-Regular.woff') format('woff'),
+            url('../fonts/Stolzl-Regular.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+    }
+
+    body {
+        font-family: Stolzl;
+    }
+
+    .aside {
+        width: 96%;
+        padding-top: 28px;
+        padding-bottom: 28px;
+        margin-top: 1.5em;
+        margin-bottom: 1.5em;
+        padding-left: 1.5em;
+
+        background: #fff;
+        line-height: 1.6;
+        box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .aside:before {
+        font-size: 22px;
+        content: url(../images/notice-icon.svg);
+        vertical-align: middle;
+        padding-right: 30px;
+        padding-left: 2px;
+        font-size: 16px;
+    }
+</style>
+<script src="https://widget.cloudpayments.ru/bundles/cloudpayments.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<head>
+    <title>widget</title>
+    <meta charset="utf-8">
+</head>
+
+<body>
+
+    <div class="sample">
+
+        <div class="form-group">
+            <label for="name-sample-6">Ваше ФИО:</label>
+            <div>
+                <input id="name-sample-6" required="" placeholder="" class="form-control" type="text"
+                    value="Джесси Брюс Пинкман" size="30">
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <label for="name-sample-2">№ Договора</label>
+            <div>
+                <input id="contract" required="" placeholder="" class="form-control" type="text" value="" size="8">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="name-sample-2">Факультет</label>
+            <div>
+                <input id="faculty" required="" placeholder="" class="form-control" type="text" value="" size="8">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="name-sample-2">Семестр</label>
+            <div>
+                <input id="semester" required="" placeholder="" class="form-control" type="text" value="" size="2">
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <label for="phone-sample-6">Номер телефона:</label>
+            <div>
+                <input id="phone-sample-6" required="" placeholder="" class="form-control" type="phone" size="30">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="email-sample-6">E-mail адрес:</label>
+            <div>
+                <input id="email-sample-6" required="" placeholder="" class="form-control" type="email"
+                    value="jb.pinkman@cloudpayments.ru" size="30">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="amount-sample-6">Сумма:</label>
+            <div>
+                <input id="amount-sample-6" required="" placeholder="" class="form-control" type="number" value="60000"
+                    size="30">
+            </div>
+        </div>
+
+        <div class="form-group">
+            </br>
+            <p>Пожалуйста, выберите вариант оплаты:</p>
+            <div>
+                <label for="select-sample-7-now">
+                    </br>
+                    <input name="select-sample-7" id="select-sample-7-now" checked="checked" type="radio">
+                    оплатить всю сумму сейчас
+                </label>
+            </div>
+            <div>
+                <label for="select-sample-7-later">
+                    </br>
+                    <input name="select-sample-7" id="select-sample-7-later" type="radio">
+                    оплатить 1/6 суммы сейчас, остальное в рассрочку ежемесячно
+                </label>
+            </div>
+        </div>
+        </br>
+        <input id="checkout-sample-7" value="Оплатить" class="button" type="button">
+
+        <script>
+            this.paySample5 = function () {
+                var widget = new cp.CloudPayments();
+                var accountId = $('#email-sample-6').val();
+
+                var amount = Math.floor($('#amount-sample-6').val()); // получаем сумму
+
+                var data = { //передаем доп. данные 
+                    name: $('#name-sample-6').val(),
+                    phone: $('#phone-sample-6').val(),
+                    comment: $('#faculty').val() + ' ' + $('#semester').val(),
+                    nick: $('#contract').val()
+                };
+                var payLater = $('#select-sample-7-later').is(':checked'); //проверка
+                if (payLater) { //включаем подписку
+
+                    var amount = amount / 6; // рассрочка
+
+                    data.CloudPayments = {
+                        recurrent: {
+                            interval: 'Month',
+                            period: 1,
+                            amount: amount,
+                            maxPeriods: 5
+                        } //5 месяцев по 1/6 начиная со следующего месяца
+                    };
+                    amount = amount; //вся сумма
+                }
+
+                widget.charge({ // options
+                        publicId: 'test_api_00000000000000000000001', //id из личного кабинета
+                        description: 'Оплата договора', //назначение
+                        amount: amount, //сумма
+                        currency: 'RUB', //валюта
+                        accountId: accountId, //идентификатор плательщика (обязательно для создания подписки)
+                        requireEmail: true,
+                        email: accountId,
+                        data: data
+                    },
+                    function (options) { // success
+                        //действие при успешной оплате
+                    },
+                    function (reason, options) { // fail
+                        //действие при неуспешной оплате
+                    });
+            };
+
+            $('#checkout-sample-7').click(paySample5);
+        </script>
+        </br>
+        </br>
+        <div class="aside">
+            Для тестирования можно использовать как <a href="https://developers.cloudpayments.ru/#testirovanie"
+                target="_blank">тестовые карточные данные</a>, так и реальные. Списания денежных средств не произойдет.
+            <br />Вы можете остановить регулярные платежи в любой момент на <a href="https://my.cloudpayments.ru/"
+                target="_blank">сайте системы CloudPayments </a></div>
+    </div>
+
+
+</body>
+
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://widget.cloudpayments.ru/bundles/cloudpayments.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <title>widget</title>
+    <meta charset="utf-8">
+</head>
+
+<body>
+    <div class="sample">
+        <div class="form-group">
+            <label for="account-sample-3">Номер абонента:</label>
+            <div>
+                <input id="account-sample-3" required="" placeholder="" class="form-control" type="text">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="amount-sample-3">Сумма:</label>
+            <div>
+                <input id="amount-sample-3" required="" placeholder="" class="form-control" type="text">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="recurrent-sample-3">
+                <input id="recurrent-sample-3" type="checkbox">
+                Включить ежемесячные платежи
+            </label>
+            <p class="help-block">При включении ваш счет будет пополняться с карты автоматически раз в месяц.</p>
+        </div>
+
+        <input id="checkout-sample-3" value="Перейти к оплате" class="btn" type="button">
+
+        <br>
+        <br>
+        <div class="form-group">
+            Вы можете остановить регулярные платежи в любой момент на <a href="https://my.cloudpayments.ru/">сайте
+                системы CloudPayments</a>.
+        </div>
+    </div>
+    <script>
+        this.paySample3 = function () {
+            var widget = new cp.CloudPayments();
+
+            var data = {};
+            var auto = $('#recurrent-sample-3').is(':checked'); //проверка
+
+            if (auto) { //включаем подписку
+
+                var date = new Date(); //текущая дата
+                date.setMonth(date.getMonth() + 1); //следующий месяц
+                date.setDate(date.getDate() - 1); //минус один день
+
+                var recurrent = {
+                    interval: 'Month',
+                    period: 1,
+                    startDate: date
+                }; //один раз в месяц начиная со следующего месяца за минусом одного дня
+                data.CloudPayments = {
+                    recurrent: recurrent
+                }
+            }
+
+            var amount = parseFloat($('#amount-sample-3').val());
+            var accountId = $('#account-sample-3').val();
+
+            widget.charge({ // options
+                    publicId: 'test_api_00000000000000000000001', //id из личного кабинета
+                    description: 'Пополнение счета абонента ' + accountId, //назначение
+                    amount: amount, //сумма
+                    currency: 'RUB', //валюта
+                    accountId: accountId, //идентификатор плательщика (обязательно для создания подписки)
+                    data: data
+                },
+                function (options) { // success
+                    //действие при успешной оплате
+                },
+                function (reason, options) { // fail
+                    //действие при неуспешной оплате
+                });
+        };
+
+        $('#checkout-sample-3').click(paySample3)
+        $(document).ready(function () {
+            $(".iframe").fancybox({
+                maxWidth: 800,
+                maxHeight: 600,
+                fitToView: false,
+                width: '70%',
+                height: '70%',
+                autoSize: false,
+                closeClick: false,
+                openEffect: 'none',
+                closeEffect: 'none'
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,10 @@
+{
+  "item.label.База знаний": {
+    "message": "Knowledge base",
+    "description": "Navbar item with label База знаний"
+  },
+  "item.label.Разработчикам": {
+    "message": "For developers",
+    "description": "Navbar item with label Разработчикам"
+  }
+}
